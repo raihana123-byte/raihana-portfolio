@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raihana Rafeek — Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --rose: #f2b8c6;
+            --rose-deep: #e0218a;
+            --cream: #fdf8f2;
+            --gold: #c9a96e;
+            --dark: #1a1218;
+            --mid: #4a3540;
+            --muted: #9a7f88;
+            --white: #ffffff;
+
+            /* ADD THE IMAGE URL HERE */
+            --main-bg: url('me.png');
+        }
+
+        /* Styling for the Hero Logo Image */
+        .hero-logo-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo-img {
+            width: 100%;
+            max-width: 500px;
+            /* Adjust this to make your name logo larger or smaller */
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(224, 33, 138, 0.3));
+            animation: floatLogo 6s ease-in-out infinite;
+            position: relative;
+            z-index: 100;
+        }
+
+        @keyframes floatLogo {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Ensure the sub-header doesn't overlap */
+        .hero-sub {
+            margin-top: 1rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+
+            /* THE BACKGROUND IMAGE */
+            background-image: url('me.jpeg');
+            background-size: cover;
+            /* Ensures it fills the screen width */
+            background-position: center 15%;
+            /* FIX: Centers horizontally, and focuses 15% from the top (your face) */
+            background-attachment: fixed;
+            /* Parallax: Image stays still while you scroll */
+            background-repeat: no-repeat;
+            background-color: var(--cream);
+
+            color: var(--dark);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* THE MASK: Ensures text is readable over the photo */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(253, 248, 242, 0.3);
+            /* Very light tint */
+            backdrop-filter: blur(2px);
+            /* Subtle blur */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Ensure your text and cards are on top of the mask */
+        #hero,
+        #about,
+        #projects,
+        #skills,
+        #creative,
+        #contact,
+        nav {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* CUSTOM CURSOR */
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--rose-deep);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--rose-deep);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        /* UPDATED NAV FOR CENTER ALIGNMENT */
+        /* TRANSPARENT GLASS NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 4rem;
+
+            /* CHANGE: Semi-transparent background */
+            background: rgba(253, 248, 242, 0.2) !important;
+
+            /* CHANGE: High blur effect to keep links visible over the photo */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            /* Subtle border to define the edge */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure the logo stays on the left */
+        .nav-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.2rem;
+            color: #e0218a;
+            text-transform: lowercase;
+            position: relative;
+            z-index: 1001;
+            text-shadow: 0 0 10px rgba(224, 33, 138, 0.3);
+            /* Adds a soft pink glow */
+        }
+        }
+
+        /* Remove the span styling so there is no second color */
+        .nav-logo span {
+            display: none;
+        }
+
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            /* This perfectly centers the links */
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-logo:hover {
+            transform: rotate(-3deg) scale(1.05);
+            /* Adds a playful pop on hover */
+        }
+
+        /* 1. The main hover effect for the text */
+        .nav-links a:hover {
+            color: var(--rose-deep) !important;
+            /* Glows in Barbie Pink */
+            text-shadow: 0 0 10px rgba(224, 33, 138, 0.6), 0 0 20px rgba(224, 33, 138, 0.2);
+            transform: translateY(-2px);
+            /* Subtle lift */
+        }
+
+        /* 2. The magical indicator that appears below the link */
+        .nav-links a::after {
+            content: '✦';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--rose-deep);
+            opacity: 0;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--rose-deep));
+        }
+
+        /* 3. Make the star pop up and glow on hover */
+        .nav-links a:hover::after {
+            opacity: 1;
+            bottom: -10px;
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        /* 4. A smooth pulsing animation for the glow */
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 5px var(--rose-deep));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 12px var(--rose-deep));
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        /* 5. Ensure the logo also has a hover effect since it's in the navbar */
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 12px rgba(224, 33, 138, 0.5));
+            transition: 0.3s ease;
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            /* Keeps your name logo at the bottom, away from your face */
+            justify-content: center;
+            padding-bottom: 8vh;
+            position: relative;
+            overflow: hidden;
+
+            /* FIX: This removes any solid color blocking the image */
+            background: transparent !important;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(8rem, 18vw, 18rem);
+            font-weight: 300;
+            color: rgba(242, 184, 198, 0.18);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            border: 1px solid var(--rose);
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+            background: rgba(242, 184, 198, 0.15);
+        }
+
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 9vw, 8rem);
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-name em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        /* Update your .hero-sub and .hero-desc */
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            /* Increased weight slightly */
+            font-style: italic;
+            color: var(--dark);
+            /* Switched to dark for better contrast */
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.03em;
+
+            /* ADD THIS: A soft white glow around the letters */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-desc {
+            max-width: 520px;
+            margin: 0 auto 3rem;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: var(--dark);
+            font-weight: 500;
+            /* Made slightly bolder */
+
+            /* ADD THIS: Semi-transparent background "pill" to make the paragraph readable */
+            background: rgba(253, 248, 242, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--rose-deep);
+            color: white;
+            padding: 1rem 2.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+
+            /* ADD THIS: A neon-style pink shadow */
+            box-shadow: 0 10px 25px rgba(224, 33, 138, 0.3), 0 0 10px rgba(224, 33, 138, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(224, 33, 138, 0.5);
+            background: var(--dark);
+            /* Color shift on hover for high contrast */
+        }
+
+        /* FLOATING PARTICLES */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent !important;
+            /* FIX: Ensures particles don't have a solid bg */
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ABOUT */
+        #about {
+            padding: 12rem 2rem;
+            /* Increased top/bottom padding significantly */
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            /* Adds space between the main story card and the B.Tech card */
+            align-items: center;
+            background: transparent !important;
+        }
+
+        /* THE PROFESSIONAL ABOUT CARD FONT PAIRING */
+        .about-content-card {
+            background: rgba(255, 255, 255, 0.4) !important;
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            /* Softer, more professional corners */
+            padding: 4rem 5rem;
+            /* More space on the sides and top/bottom */
+            max-width: 1000px;
+            width: 90%;
+            /* Ensures it doesn't hit the screen edges on smaller laptops */
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* Heading: Elegant & Artistic */
+        .about-title {
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 700 !important;
+            font-size: 3rem !important;
+        }
+
+        .about-title em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        /* THE NEW THEME FONT: Playfair Display */
+        .main-story {
+            font-size: 1.2rem !important;
+            line-height: 2 !important;
+            margin-top: 1.5rem;
+        }
+
+        /* Body: Clean, High-Tech, & Readable */
+        .about-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--mid);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        /* Tag Labels: Modern & Functional */
+        .about-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* The Label and Tags use Montserrat for the 'Logic' side */
+        .about-label,
+        .tag {
+            font-family: 'Montserrat', sans-serif !important;
+            letter-spacing: 0.15em !important;
+        }
+
+        .tag {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .tag:hover {
+            background: var(--rose-deep);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(224, 33, 138, 0.2);
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(242, 184, 198, 0.4);
+            position: relative;
+        }
+
+        .about-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .about-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .about-card-accent {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose), var(--gold));
+            opacity: 0.2;
+        }
+
+        /* Styling for the About section text */
+        #about .about-label {
+            color: var(--rose-deep);
+            /* Use your bright pink */
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(224, 33, 138, 0.3);
+        }
+
+        #about .about-title {
+            color: var(--dark);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        #about .about-text {
+            background: rgba(253, 248, 242, 0.4);
+            /* Semi-transparent cream */
+            backdrop-filter: blur(8px);
+            /* Blurs the background image details */
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* High-visibility Skill Tags */
+        #about .tag {
+            font-size: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(224, 33, 138, 0.15);
+            /* Light pink tint */
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--rose-deep);
+            color: var(--rose-deep);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+
+        #about .tag:hover {
+            background: var(--rose-deep);
+            color: white;
+            box-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+            transform: scale(1.05);
+        }
+
+        .divider {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--rose-deep);
+            /* Switched to your bright Barbie pink */
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.5em;
+
+            /* ADD THIS: Makes the pink glow against the background */
+            text-shadow: 0 0 15px rgba(224, 33, 138, 0.4);
+            position: relative;
+            z-index: 20;
+        }
+
+        /* PROJECTS */
+        #projects {
+            padding: 6rem 3rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.15;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(242, 184, 198, 0.3);
+            background: var(--rose-pale);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(212, 96, 122, 0.15);
+        }
+
+        .project-thumb {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-thumb.med {
+            background: linear-gradient(135deg, #e8f4f8, #b8d4e8);
+        }
+
+        .project-thumb.mood {
+            background: linear-gradient(135deg, #f8e8f4, #e4b8d8);
+        }
+
+        .project-body {
+            padding: 1.8rem;
+        }
+
+        .project-type {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--mid);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tech-pill {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.7rem;
+            background: rgba(212, 96, 122, 0.1);
+            color: var(--rose-deep);
+            border-radius: 100px;
+            letter-spacing: 0.05em;
+        }
+
+        /* SKILLS */
+        #skills {
+            padding: 6rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid rgba(242, 184, 198, 0.3);
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--rose);
+        }
+
+        .skill-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* CREATIVE */
+        #creative {
+            padding: 6rem 3rem;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #creative .section-title {
+            color: white;
+        }
+
+        #creative .section-label {
+            color: var(--gold);
+        }
+
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .creative-card {
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            transition: background 0.3s, transform 0.3s;
+            text-align: center;
+        }
+
+        .creative-card:hover {
+            background: rgba(242, 184, 198, 0.08);
+            transform: translateY(-4px);
+            border-color: rgba(242, 184, 198, 0.25);
+        }
+
+        .creative-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .creative-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .creative-desc {
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+        #contact {
+            padding: 7rem 3rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-title em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .contact-text {
+            font-size: 0.92rem;
+            color: var(--mid);
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            background: var(--rose-deep);
+        }
+
+        r {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(242, 184, 198, 0.2);
+            font-size: 0.78rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        .cake-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cake-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            background: var(--darfootek);
+            /* Placeholder while images load */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cake-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .cake-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 96, 122, 0.4);
+            /* Rose tint */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .cake-overlay span {
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            border: 1px solid white;
+            padding: 0.5rem 1.5rem;
+        }
+
+        .cake-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .cake-item:hover .cake-overlay {
+            opacity: 1;
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 768px) {
+            #about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .creative-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+            }
+        }
+
+        .contact-icon-link {
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-icon-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon-link:hover i {
+            color: var(--rose-deep) !important;
+            /* Turns icons rose when you hover! */
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                /* On smaller screens, go back to cover but keep the top visible */
+                background-size: cover;
+                background-position: center 20%;
+            }
+        }
+
+        /* --- SECTION TRANSPARENCY & GLIDE EFFECT --- */
+
+        /* 1. Make the main sections transparent so the background image shows through */
+        #about,
+        #skills,
+        #contact {
+            background: transparent !important;
+            padding: 8rem 2rem;
+            /* Adds nice spacing between sections */
+        }
+
+        /* 2. Give the Projects section a 'Glass' feel to keep text readable */
+        #projects {
+            background: rgba(255, 255, 255, 0.2) !important;
+            /* Very light transparent white */
+            backdrop-filter: blur(12px);
+            /* This creates the high-end 'frosted glass' look */
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 3. Give the Creative section a slightly darker glass look */
+        #creative {
+            background: rgba(26, 18, 24, 0.6) !important;
+            /* Semi-transparent dark */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 8rem 2rem;
+            color: white;
+        }
+
+        /* 4. Update your cards to look like they are floating over the image */
+        .about-card,
+        .project-card,
+        .skill-card,
+        .creative-card {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+
+            /* Adds a soft glass background so the image doesn't interfere with text */
+            background: rgba(253, 248, 242, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            /* Stronger color and glow */
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+
+            border-top: 1px solid rgba(224, 33, 138, 0.2);
+
+            /* Subtle glow to separate it from the bakery background */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Make the "love" heart stand out */
+        footer::selection {
+            background: var(--rose-deep);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">Raihana <span>Rafeek</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#creative">Creative</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <!-- HERO -->
+    <section id="hero">
+        <div id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-tag">✦ AI/ML Engineer · Creator · Entrepreneur</div>
+            <div class="hero-logo-container reveal">
+                <img src="raihanarafeek.png" alt="Raihana Rafeek" class="hero-logo-img">
+            </div>
+            <p class="hero-sub">Building intelligent things. Baking beautiful things.</p>
+            <p class="hero-desc">Final year B.Tech CSE student specialising in AI & Machine Learning — where curiosity
+                meets creativity, and code meets cake.</p> <a href="#projects" class="hero-cta">View My Work ↓</a>
+        </div>
+    </section>
+    <div class="divider">· · · ✦ · · ·</div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="reveal">
+            <p class="about-label">✦ About Me</p>
+            <h2 class="about-title">A girl who builds <em>algorithms</em> by day, <em>pastries</em> by night</h2>
+            <p class="about-text">I'm a final year AI/ML engineering student at heart, a web developer by hobby, a cake
+                entrepreneur by passion, and a visual storyteller behind the lens.I believe the best things in life sit
+                at the intersection of logic and aesthetics —
+                whether that's a machine learning model, a well-designed website, or a perfectly frosted cake.</p>
+            <div class="about-tags">
+                <span class="tag">AI / Machine Learning</span>
+                <span class="tag">Web Development</span>
+                <span class="tag">Cake Business</span>
+                <span class="tag">Video Editing</span>
+                <span class="tag">Photography</span>
+                <span class="tag">Aesthetic Everything</span>
+            </div>
+        </div>
+        <div class="reveal">
+            <div class="about-card">
+                <div class="about-card-accent"></div>
+                <div class="about-card-icon">🎓</div>
+                <h3>B.Tech CSE (AI/ML)</h3>
+                <p>Final Year · Specialisation in Artificial Intelligence & Machine Learning</p>
+                <br>
+                <div class="about-card">
+                    <div class="about-card-accent"></div>
+                    <div class="about-card-icon">📄</div>
+                    <h3>My Resume</h3>
+                    <p>Detailed overview of my academic background and technical expertise.</p>
+                    <br>
+                    <a href="myresume.pdf" target="_blank" class="hero-cta"
+                        style="padding: 0.6rem 1.8rem; font-size: 0.75rem;">
+                        Download PDF ↓
+                    </a>
+                </div>
+                <br>
+                <div class="about-card-icon">🎂</div>
+                <h3>Cake Entrepreneur</h3>
+                <p>Turning sugar, flour, and creativity into little edible artworks — because why not run a business
+                    while studying?</p>
+                <br>
+                <div class="about-card-icon">🎬</div>
+                <h3>Visual Creator</h3>
+                <p>Capturing moments, crafting edits — aesthetic-first, always.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-header reveal">
+            <p class="section-label">✦ Featured Work</p>
+            <h2 class="section-title">Projects I've <em>built</em></h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-thumb med">🏥</div>
+                <div class="project-body">
+                    <p class="project-type">Web Development</p>
+                    <h3 class="project-name">Al Afiya Medical Supplies</h3>
+                    <p class="project-desc">A professional corporate platform for a premier healthcare distributor in
+                        the UAE. Focused on clean aesthetics and seamless user experience.</p>
+                    <div class="project-tech" style="margin-bottom: 1.5rem;">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">UI Design</span>
+                    </div>
+
+                    <a href="https://afiyamed.com" target="_blank" class="contact-btn"
+                        style="padding: 0.6rem 1.4rem; font-size: 0.7rem; background: var(--gold);">
+                        Visit Live Site ↗
+                    </a>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-thumb mood">🎭</div>
+                <div class="project-body">
+                    <p class="project-type">AI / Machine Learning</p>
+                    <h3 class="project-name">Mood Movie Magic</h3>
+                    <p class="project-desc">A mood-based movie recommendation system — tell it how you feel, and it
+                        finds the perfect film. Emotion recognition meets intelligent filtering.</p>
+                    <div class="project-tech">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">ML Model</span>
+                        <span class="tech-pill">NLP</span>
+                        <span class="tech-pill">Recommender</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-header reveal">
+            <p class="section-label">✦ Expertise</p>
+            <h2 class="section-title">What I <em>bring</em> to the table</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <div class="skill-icon">🧠</div>
+                <p class="skill-name">AI & ML</p>
+                <p class="skill-desc">Model building and training.</p>
+                <div
+                    style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px; position: relative;">
+                    <div style="background: var(--rose-deep); width: 85%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--rose-deep); text-align: right; margin-top: 5px;">85%</p>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">🌐</div>
+                <p class="skill-name">Web Dev</p>
+                <p class="skill-desc">Aesthetic & functional sites.</p>
+                <div style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px;">
+                    <div style="background: var(--gold); width: 100%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--gold); text-align: right; margin-top: 5px;">100%</p>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">🐍</div>
+                <p class="skill-name">Python</p>
+                <p class="skill-desc">Data processing & ML logic.</p>
+                <div style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px;">
+                    <div style="background: var(--rose-deep); width: 85%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--rose-deep); text-align: right; margin-top: 5px;">85%</p>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">📊</div>
+                <p class="skill-name">Data Science</p>
+                <p class="skill-desc">Analysis & Visualisation.</p>
+                <div style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px;">
+                    <div style="background: var(--rose-deep); width: 85%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--rose-deep); text-align: right; margin-top: 5px;">85%</p>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">🎨</div>
+                <p class="skill-name">UI/UX Sense</p>
+                <p class="skill-desc">Design thinking & Layouts.</p>
+                <div style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px;">
+                    <div style="background: var(--muted); width: 50%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--muted); text-align: right; margin-top: 5px;">50%</p>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">💼</div>
+                <p class="skill-name">Entrepreneurship</p>
+                <p class="skill-desc">Business planning & delivery.</p>
+                <div style="background: var(--rose-pale); border-radius: 10px; height: 6px; margin-top: 15px;">
+                    <div style="background: var(--gold); width: 100%; height: 100%; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--gold); text-align: right; margin-top: 5px;">100%</p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- CREATIVE -->
+    <section id="creative">
+        <div class="section-header reveal" style="max-width:600px;margin:0 auto 3rem;">
+            <p class="section-label">✦ Beyond Code</p>
+            <h2 class="section-title" style="color:white;">The creative <em style="color:var(--rose);">soul</em> behind
+                the engineer</h2>
+        </div>
+        <div class="creative-grid">
+            <a href="https://instagram.com/_maryambakes_" target="_blank" class="creative-card reveal"
+                style="text-decoration: none;">
+                <div class="creative-icon">🎂</div>
+                <p class="creative-name">Cake Artistry</p>
+                <p class="creative-desc">Custom cakes crafted with precision. <br><span
+                        style="color:var(--rose);">_maryambakes_ ↗</span></p>
+            </a>
+
+            <a href="https://instagram.com/_reel.itt_" target="_blank" class="creative-card reveal"
+                style="text-decoration: none;">
+                <div class="creative-icon">🎬</div>
+                <p class="creative-name">Video Editing</p>
+                <p class="creative-desc">Aesthetic edits and visual storytelling. <br><span
+                        style="color:var(--rose);">_reel.itt_ ↗</span></p>
+            </a>
+
+            <a href="https://instagram.com/raihana.ugc" target="_blank" class="creative-card reveal"
+                style="text-decoration: none;">
+                <div class="creative-icon">📷</div>
+                <p class="creative-name">Visual Content</p>
+                <p class="creative-desc">Lifestyle, lighting, and framing. <br><span
+                        style="color:var(--rose);">raihana.ugc ↗</span></p>
+            </a>
+        </div>
+        <div class="reveal" style="max-width: 1100px; margin: 4rem auto 0;">
+            <p class="section-label" style="text-align: center; margin-bottom: 2rem;">✦ Edible Art Gallery</p>
+            <div class="cake-grid">
+                <div class="cake-item">
+                    <img src="assets/images/cake1.jpg" alt="Cake Artistry">
+                    <div class="cake-overlay"><span>Floral Elegance</span></div>
+                </div>
+                <div class="cake-item">
+                    <img src="assets/images/cake2.jpg" alt="Cake Artistry">
+                    <div class="cake-overlay"><span>Custom Design</span></div>
+                </div>
+                <div class="cake-item">
+                    <img src="assets/images/cake3.jpg" alt="Cake Artistry">
+                    <div class="cake-overlay"><span>Aesthetic Frosting</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="contact-title reveal">Let's create something <em>beautiful</em> together</h2>
+        <p class="contact-text reveal">Whether it's a tech collaboration, a web project, or a custom cake order — I'd
+            love to connect.</p>
+
+        <div class="reveal" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem;">
+            <a href="mailto:raihanarafeek2005@gmail.com" class="contact-icon-link" title="Email Me">
+                <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--dark);"></i>
+            </a>
+            <a href="https://linkedin.com/in/raihana-rafeek-3a55a8317" target="_blank" class="contact-icon-link"
+                title="LinkedIn">
+                <i class="fab fa-linkedin-in" style="font-size: 1.5rem; color: var(--dark);"></i>
+            </a>
+            <a href="https://instagram.com/_raihana.xr_" target="_blank" class="contact-icon-link" title="Instagram">
+                <i class="fab fa-instagram" style="font-size: 1.5rem; color: var(--dark);"></i>
+            </a>
+        </div>
+
+        <a href="mailto:raihanarafeek2005@gmail.com" class="contact-btn reveal">Say Hello ✦</a>
+    </section>
+
+    <footer>© 2025 Raihana Rafeek · Made with love, code & a little sugar</footer>
+
+
+    <script>
+        // ── CUSTOM CURSOR ──
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursor-ring');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let rx = mx, ry = my;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = mx + 'px';
+            cursor.style.top = my + 'px';
+        });
+
+        (function animRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animRing);
+        })();
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '30px'; // Grows larger on links
+                cursor.style.height = '30px';
+                cursor.style.background = 'rgba(224, 33, 138, 0.3)'; // Becomes a soft pink halo
+                cursor.style.border = '1px solid #e0218a';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '12px';
+                cursor.style.height = '12px';
+                cursor.style.background = '#e0218a';
+                cursor.style.border = 'none';
+            });
+        });
+        // ── ANTIGRAVITY PARTICLES ──
+        const container = document.getElementById('particles');
+        const NUM = 28;
+        const particles = [];
+        const colors = ['#f2b8c6', '#d4607a', '#c9a96e', '#e8b4c8', '#f9d4df', '#c4849a'];
+
+        for (let i = 0; i < NUM; i++) {
+            const el = document.createElement('div');
+            el.className = 'particle';
+            const size = Math.random() * 14 + 4;
+            el.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random() * colors.length)]};opacity:${(Math.random() * 0.5 + 0.2).toFixed(2)};`;
+            container.appendChild(el);
+
+            const p = {
+                el,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size
+            };
+            p.baseX = p.x;
+            p.baseY = p.y;
+            particles.push(p);
+        }
+
+        let heroMouseX = window.innerWidth / 2;
+        let heroMouseY = window.innerHeight / 2;
+
+        document.getElementById('hero').addEventListener('mousemove', e => {
+            heroMouseX = e.clientX;
+            heroMouseY = e.clientY;
+        });
+
+        (function animParticles() {
+            particles.forEach(p => {
+                const dx = heroMouseX - p.x;
+                const dy = heroMouseY - p.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const REPEL = 120;
+
+                if (dist < REPEL && dist > 0) {
+                    const force = (REPEL - dist) / REPEL;
+                    const angle = Math.atan2(dy, dx);
+                    p.vx -= Math.cos(angle) * force * 1.2;
+                    p.vy -= Math.sin(angle) * force * 1.2;
+                }
+
+                p.vx += (p.baseX - p.x) * 0.001;
+                p.vy += (p.baseY - p.y) * 0.001;
+                p.vy -= 0.015; // antigravity upward float
+                p.vx *= 0.97;
+                p.vy *= 0.97;
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.y < -20) { p.y = window.innerHeight + 20; p.baseY = p.y; }
+                if (p.y > window.innerHeight + 20) { p.y = -20; p.baseY = p.y; }
+                if (p.x < -20) p.x = window.innerWidth + 20;
+                if (p.x > window.innerWidth + 20) p.x = -20;
+
+                p.el.style.left = p.x + 'px';
+                p.el.style.top = p.y + 'px';
+            });
+            requestAnimationFrame(animParticles);
+        })();
+
+        // ── SCROLL REVEAL ──
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => observer.observe(r));
+    </script>
+</body>
+
+</html>
